@@ -5,27 +5,17 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class Chapter1 {
-    public static void main(String[] args) {
-        List<Apple> appleList = Arrays.asList(
-                new Apple(100, "green"),
-                new Apple(110, "green"),
-                new Apple(150, "yellow"),
-                new Apple(150, "yellow"),
-                new Apple(210, "green"),
-                new Apple(110, "red"),
-                new Apple(100, "green"),
-                new Apple(210, "red"),
-                new Apple(210, "yellow"));
 
-        appleList.sort(Comparator.comparing(Apple::getWeight).reversed());
-        System.out.println(appleList);
-        List<Apple> greenApples = FilteringApples.filterApples(appleList, FilteringApples::isGreenApple);
+    public static void main(String[] args) {
+        AppleList.appleList.sort(Comparator.comparing(Apple::getWeight).reversed());
+        System.out.println(AppleList.appleList);
+        List<Apple> greenApples = FilteringApples.filterApples(AppleList.appleList, FilteringApples::isGreenApple);
         System.out.println("Green apples: " + Arrays.toString(greenApples.toArray()));
-        List<Apple> heavyApples = FilteringApples.filterApples(appleList, FilteringApples::isHeavyApple);
+        List<Apple> heavyApples = FilteringApples.filterApples(AppleList.appleList, FilteringApples::isHeavyApple);
         System.out.println("Heavy apples: " + Arrays.toString(heavyApples.toArray()));
-        List<Apple> yellowApples = FilteringApples.filterApples(appleList, apple -> apple.getColor().equals("yellow"));
+        List<Apple> yellowApples = FilteringApples.filterApples(AppleList.appleList, apple -> apple.getColor().equals("yellow"));
         System.out.println("Yellow apples: " + Arrays.toString(yellowApples.toArray()));
-        System.out.println("Red apples: " + Arrays.toString(appleList.stream().filter(apple -> apple.getColor().equals("red")).toArray()));
+        System.out.println("Red apples: " + Arrays.toString(AppleList.appleList.stream().filter(apple -> apple.getColor().equals("red")).toArray()));
     }
 
     @SuppressWarnings("unused")
